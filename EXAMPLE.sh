@@ -16,10 +16,10 @@ conda activate tch2_yml
 
 # Create new directory 
 rootdir=/fileserver/fastscratch/serge/s20210815_mwf_example_processing_for_onur  # root folder in which all the processed data will be stored 
-cp -r $codedir/* $rootdir/ # copy all our code here
 experiment=<REMOVED> # subfolder that identifies current experiment (e.g. today's date)
 mkdir $rootdir/$experiment
 cd $rootdir/$experiment
+cp -r $codedir/* . # copy all our code here
 
 # GET DICOMS 
 MRN=<REMOVED>
