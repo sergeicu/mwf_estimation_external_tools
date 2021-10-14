@@ -20,18 +20,22 @@ def load_args():
     
     parser = argparse.ArgumentParser()
     parser.add_argument('-i','--dicomdir', nargs='+', type=str, required=True,help='one or more DICOM directory paths') 
+    parser.add_argument('-o','--outdir', type=str, default=None, help='folder to save the files to') 
     args = parser.parse_args()
 
     return args 
 
-def convert_DICOMS(paths):
+def convert_DICOMS(paths, savedir):
         
     # run convert mechanism     
     for i, newpath in enumerate(paths): 
         
         print(f"\n\n\n{i}/{len(paths)}: {newpath}")
 
-        outputdir = newpath + "/NRRD/"
+        if savedir is None: 
+        	outputdir = newpath + "/NRRD/"
+        else: 
+        	outputdir = savedir + "/NRRD/"
         os.makedirs(outputdir,exist_ok=True)
         
         # convert 
@@ -51,7 +55,7 @@ if __name__ == '__main__':
         args.dicomdir = [args.dicomdir]
     
     # process
-    convert_DICOMS(args.dicomdir)
+    convert_DICOMS(args.dicomdir, args.outdir)
     
     
     
