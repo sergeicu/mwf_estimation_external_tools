@@ -10,8 +10,6 @@ import numpy as np
 import nrrd 
 import hdf5storage as hdf
 
-import svtools as sv
-
 def load_args(): 
     parser = argparse.ArgumentParser()
 
