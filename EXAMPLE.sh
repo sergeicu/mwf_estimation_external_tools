@@ -41,7 +41,10 @@ python fix_yaml.py --input $nrrd
 nrrd_fixed=$scandir/NRRD/
 python nrrd_to_nifti.py --input $nrrd_fixed
 
-# run julia (prereqs: installed julia language on your machine)
+# (if not installed) install julia language on your machine (via conda, or yum install), then: 
+# add DECAES.js REPL to your your julia language packages: 1. type "julia" in terminal 2. type "]" inside julia to enter REPL 3. type "add DECAES" to download package
+
+# run julia
 julia_out=$scandir/NRRD/out_julia
 mkdir $julia_out
 cp -r $scandir/NRRD/*.nii.gz $julia_out/
