@@ -205,8 +205,24 @@ def get_echo_in_ms(echo):
     ms=T2range[echo-1]
     
     return ms 
-    
-        
+
+
+################################################################    HELPER FUNCTION
+def execute(cmd,sudo=False, remote=False):
+    """Execute commands in bash and print output to stdout directly"""
+
+    if sudo:
+        cmd = ["sudo"]+cmd
+    if remote:
+        print(" ".join(cmd))
+    else:
+        with subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True) as p:
+            for line in p.stdout:
+                print(line, end='') # process line here
+
+        if p.returncode != 0:
+            raise subprocess.CalledProcessError(p.returncode, p.args)        
+
 ################################################################
 # Prasloski implementation in matlab 
 
@@ -292,7 +308,7 @@ if __name__ == '__main__':
         txt_file = input_paths[0].replace('.nii.gz','.txt') if len(input_paths) == 1 else args.outdir +'run_julia.txt'
         cmd = process_julia(args, input_paths, juliadir, txt_file)
         if not args.recalculate_cutoff: # do not run julia if we are only recalculating the cutoff value for existing files
-            sv.execute(cmd)        
+            execute(cmd)        
 
         # STEP 3 - convert julia .mat output into .nii.gz files 
         niftis = [] 
