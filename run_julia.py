@@ -27,6 +27,7 @@ def load_args():
     parser.add_argument('--recalculate_cutoff', action='store_true', help='recalculate cut off echo for files where the T2 distribution had already been computed by Julia. ')
 
     parser.add_argument('--matlab', action='store_true', help='output a command to run in the matlab implementation of the same algorithm.')    
+    parser.add_argument('--threads', type=str, default=4, help='set number of threads (CPUs) to use for given machine. Default = 4')    
     
     args = parser.parse_args()
     
@@ -39,7 +40,6 @@ def get_data_paths(args):
     # if one element in a list 
     if len(args.input)==1:
         args.input = args.input[0] # if only one item is supplied in a list - turn into a string 
-
         assert os.path.exists(args.input), f"Incorrect test input"
 
         # if path to folder 
@@ -111,7 +111,7 @@ def process_julia(args, impaths, juliadir, fullname):
 
     # executes the files written to .txt file
     print('To execute manually from Terminal using julia language: run the following:\n')
-    cmd1 = 'export JULIA_NUM_THREADS=4;'
+    cmd1 = 'export JULIA_NUM_THREADS=' + str(args.threads) + ';'
     print(cmd1)
     cmd2 = ['julia', juliadir+'decaes.jl', '@'+fullname]
     print(' '.join(cmd2) )
