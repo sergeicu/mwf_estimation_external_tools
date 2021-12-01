@@ -26,7 +26,7 @@ MRN=<REMOVED>
 DATE=<REMOVED> 
 savedir=$rootdir/$experiment/
 bash retrieve2.sh $MRN $DATE $savedir
-cd $savedir && bash seriessort.sh . 
+bash seriessort.sh $savedir 
 
 # DICOM2NRRD
 session=<REMOVED> # a child folder that retrieve.sh script creates when it fetches dicoms. This corresponds to MRI session id 
