@@ -28,6 +28,7 @@ def load_args():
 
     parser.add_argument('--matlab', action='store_true', help='output a command to run in the matlab implementation of the same algorithm.')    
     parser.add_argument('--threads', type=str, default=4, help='set number of threads (CPUs) to use for given machine. Default = 4')    
+    parser.add_argument('--te', type=str, default=9, help='default TE')    
     
     args = parser.parse_args()
     
@@ -96,7 +97,7 @@ def process_julia(args, impaths, juliadir, fullname):
         f.write('--T2map'+'\n')
         f.write('--T2part'+'\n')
         f.write('--TE'+'\n') 
-        f.write('9e-3'+'\n')
+        f.write(args.te+'e-3'+'\n')
         f.write('--nT2'+'\n')
         f.write('40'+'\n')
         f.write('--T2Range'+'\n')
