@@ -28,7 +28,7 @@ def load_args():
 
     parser.add_argument('--matlab', action='store_true', help='output a command to run in the matlab implementation of the same algorithm.')    
     parser.add_argument('--threads', type=str, default=4, help='set number of threads (CPUs) to use for given machine. Default = 4')    
-    parser.add_argument('--te', type=str, default=9, help='default TE')    
+    parser.add_argument('--te', type=str, default='9', help='default TE')    
     
     args = parser.parse_args()
     
