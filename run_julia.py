@@ -109,6 +109,8 @@ def process_julia(args, impaths, juliadir, fullname):
         f.write('--MPWin'+'\n')
         f.write('50e-3'+'\n')
         f.write('200e-3'+'\n')
+        f.write('--Reg'+'\n')
+        f.write('lcurve'+'\n')        
 
     # executes the files written to .txt file
     print('To execute manually from Terminal using julia language: run the following:\n')
